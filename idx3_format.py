@@ -9,7 +9,7 @@ import struct
 from struct import *
 
 
-def convert_all():
+def convert_all_to_idx3():
   # Load from and save to
   Names = [['dataset/faces_training','train'], ['dataset/faces_test','test']]
 
@@ -115,11 +115,12 @@ def load_img_lbl_idx3(dataset="training", classes=np.arange(2), path=".", size =
   return images_out, labels
 
 if __name__ == '__main__':
-  convert_all()
-  imgs,lbs = load_img_lbl_idx3(path='dataset')
-  for i in range(len(imgs)):
-    pass#print(lbs[i])
-    #display_img(imgs[i])
+  pass
+  #convert_all_to_idx3()
+  # imgs,lbs = load_img_lbl_idx3(path='dataset')
+  # for i in range(len(imgs)):
+  #   #print(lbs[i])
+  #   display_img(imgs[i])
 
 
 
