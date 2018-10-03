@@ -11,8 +11,8 @@ import imageio
 import sys
 from math import ceil
 
+
 def read_images(img_path):
-  
   try:
     img = np.array(imageio.imread(img_path), dtype=np.float64)
   except:
@@ -28,7 +28,7 @@ def display_img(img):
   plt.axis('off')
   plt.show()
 
-def save_img(img, path_to='../data_set_Faces/Faces_out/', out_name='out'):
+def save_img(img, path_to='dataset/', out_name='out'):
   out=path_to+out_name+".pgm"
   imageio.imwrite(out, img[:, :])
 
@@ -44,7 +44,7 @@ def convolutional(img, width,height, filter_conv=[[-1,-1,-1], [-1,4,-1], [-1,-1,
   w_out = ceil( ( (width - fw + (2*paddings)) // h_stride) + 1)
   h_out = ceil( ( (height - fh + (2*paddings)) // v_tride) + 1)
 
-  output_img = np.zeros((h_out,w_out))
+  output_img_conv = np.zeros((h_out,w_out))
 
   index_h = index_w = 0
   sum_dot = 0
@@ -60,10 +60,10 @@ def convolutional(img, width,height, filter_conv=[[-1,-1,-1], [-1,4,-1], [-1,-1,
 
       # ReLu the pixel, and make sure it goes just till 255, cause we are working with chromatic pics
       sum_dot = max(0,min(sum_dot,255))
-      output_img[line_height][line_weidth] = sum_dot
+      output_img_conv[line_height][line_weidth] = sum_dot
 
 
-  return output_img
+  return np.pad(output_img_conv, (1,1), 'constant', constant_values=(0, 0))
 
 def main():
 
@@ -73,7 +73,7 @@ def main():
                                                                 # Gaussian blur or as Gaussian smoothing
 
 
-  img_path = '../data_set_Faces/Faces/s1/1.pgm'
+  img_path = 'dataset/faces_pgm/glasses/101.pgm'
   out_name_ = 'out'
 
   if len(sys.argv) >= 3:
@@ -97,5 +97,13 @@ def main():
 
 if __name__ == '__main__':
   main()
+
+"""
+a = [1, 2, 3, 4, 5]
+>>> np.pad(a, (2,3), 'constant', constant_values=(4, 6))
+array([4, 4, 1, 2, 3, 4, 5, 6, 6, 6])
+
+"""
+
 
 
