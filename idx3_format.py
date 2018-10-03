@@ -9,7 +9,7 @@ import struct
 from struct import *
 
 
-def convert():
+def convert_all():
   # Load from and save to
   Names = [['dataset/faces_training','train'], ['dataset/faces_test','test']]
 
@@ -41,7 +41,6 @@ def convert():
           data_image.append(img[y,x])
 
       data_label.append(label) # labels start (one unsigned byte each)
-
     hexval = "{0:#0{1}x}".format(len(FileList),6) # number of files in HEX
 
     # header for label array
@@ -116,11 +115,11 @@ def load_img_lbl_idx3(dataset="training", classes=np.arange(2), path=".", size =
   return images_out, labels
 
 if __name__ == '__main__':
-  convert()
+  convert_all()
   imgs,lbs = load_img_lbl_idx3(path='dataset')
   for i in range(len(imgs)):
-    print(lbs[i])
-    display_img(imgs[i])
+    pass#print(lbs[i])
+    #display_img(imgs[i])
 
 
 
