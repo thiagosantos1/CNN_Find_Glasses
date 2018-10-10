@@ -24,4 +24,8 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
 
 # Code Classifiers
 
-* Our goal is to test our problem with different classifiers, in order to get an idea of how hard/accurate is the given problem. In this project we have different python codes for Classifiers:
+* Our goal is to test our problem with different classifiers, in order to get an idea of how hard/accurate is the given problem. 
+
+* In this project we have different python codes for Classifiers:
+
+  1) full_perceptrons.py --> The idea is to test our model with only 1 layer(full layer of perceptrons), without hidden or convolution layers. Our goal is to get a better result than if a computer were just guessing.
