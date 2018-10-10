@@ -29,3 +29,5 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
 * In this project we have different python codes for Classifiers:
 
   1) full_perceptrons.py --> The idea is to test our model with only 1 layer(full layer of perceptrons), without hidden or convolution layers. Our goal is to get a better result than if a computer were just guessing.
+
+  2) cnn_net.py --> We will use convolution layers, each one followed by a max pooling. At the end, we flatten the results, and give to a fully connected layer with one hidden layer. We will use a simplifcation of a restnet architecture.

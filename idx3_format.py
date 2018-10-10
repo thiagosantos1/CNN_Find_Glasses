@@ -136,12 +136,12 @@ def load_img_lbl_idx3(dataset="training", classes=np.arange(2), path=".", size =
   ind = [ k for k in range(size) if lbl[k] in classes ]
   N = size 
   images = np.zeros((N, rows, cols), dtype=np.uint8)
-  labels = np.zeros((N, 1), dtype=np.int8)
+  labels = np.zeros((N, len(classes)),dtype=np.int8)
   for i in range(N): #int(len(ind) * size/100.)):
     images[i] = np.array(img[ ind[i]*rows*cols : (ind[i]+1)*rows*cols ])\
                 .reshape((rows, cols))
-    labels[i] = lbl[ind[i]]
-  labels = [label[0] for label in labels]
+    labels[i][lbl[ind[i]]] = 1
+
   return images, labels
 
 if __name__ == '__main__':
@@ -154,6 +154,8 @@ if __name__ == '__main__':
   # imgs,lbs = load_img_lbl_idx3(dataset='testing', path='dataset')
   # for i in range(len(imgs)):
   #   display_img(imgs[i])
+
+
 
 
 
