@@ -44,7 +44,7 @@ def get_width_height(img):
   return [len(img[0]), len(img)]
 
 
-def convolutional(img, width,height, filter_conv=[[-1,-1,-1], [-1,4,-1], [-1,-1,-1]], h_stride=1, v_tride=1, paddings=0):
+def convolutional(img, width,height, filter_conv=[[-1,-1,-1], [-1,4,-1], [-1,-1,-1]], h_stride=1, v_tride=1, paddings=0, out_half_size=False):
 
   fw = len(filter_conv[0])
   fh = len(filter_conv)
@@ -70,11 +70,11 @@ def convolutional(img, width,height, filter_conv=[[-1,-1,-1], [-1,4,-1], [-1,-1,
       sum_dot = max(0,min(sum_dot,255))
       output_img_conv[line_height][line_weidth] = sum_dot
 
-
-  return np.pad(output_img_conv, (1,1), 'constant', constant_values=(0, 0))
-
   # return half of the size
-  #return  scipy.misc.imresize(np.pad(output_img_conv, (1,1), 'constant', constant_values=(0, 0)), (height//2, width//2))
+  if out_half_size:
+    return  scipy.misc.imresize(np.pad(output_img_conv, (1,1), 'constant', constant_values=(0, 0)), (height//2, width//2))
+  
+  return np.pad(output_img_conv, (1,1), 'constant', constant_values=(0, 0))
 
 def convert_all_convolution():
 
