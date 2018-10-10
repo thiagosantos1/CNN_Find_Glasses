@@ -1,3 +1,15 @@
+"""
+Author: Thiago Santos
+Master thesis project - Fall 2018
+
+Used to convert a giving list of images to idx3 format(MNIST format). We also have an available 
+function to read all images from an idx3 format to numpy arrays.
+"""
+
+#!/usr/bin/env python3
+# chmod u+x
+# -*- coding: utf-8 -*-  
+
 import os
 from PIL import Image
 from array import *

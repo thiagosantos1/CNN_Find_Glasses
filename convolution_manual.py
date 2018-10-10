@@ -1,3 +1,11 @@
+"""
+Author: Thiago Santos
+Master thesis project - Fall 2018
+
+In in this file we have built a code to run a convolution with a giving/default filter/weight in a list of images. 
+With the results, we can then run the code idx3_format.py to format all to idx3.
+"""
+
 #!/usr/bin/env python3
 # chmod u+x
 # -*- coding: utf-8 -*-  
