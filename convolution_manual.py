@@ -7,12 +7,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 from math import ceil
 import random
-import imageio
+import imageio 
 import sys
 from math import ceil
 import scipy.misc
 import os
-from idx3_format import convert_all_to_idx3
+from idx3_format import convert_training_test_to_idx3
+from idx3_format import convert_all_imgs_to_idx3
 from idx3_format import load_img_lbl_idx3
 
 def read_images(img_path):
@@ -107,7 +108,8 @@ def convert_all_convolution():
 
 if __name__ == '__main__':
   convert_all_convolution()
-  convert_all_to_idx3()
+  convert_training_test_to_idx3()
+  convert_all_imgs_to_idx3()
 
 
 
