@@ -79,10 +79,10 @@ def main():
   X_test = X_test.reshape(size_test, height_pic*width_pics)
 
   # Training paramters
-  NUM_STEPS = 10000
+  NUM_STEPS = 1000
   MINIBATCH_SIZE = 20
   learning_rate_ = 0.0001
-
+  size_hidden_layer = 16
 
   #### create model architecture ####
 
@@ -109,7 +109,7 @@ def main():
 
   # create fully connected layer and train - Foward
   # 1024 is the number of neuron in the hidden layer after the connect layer
-  full_1 = tf.nn.relu(full_layer(conv2_flat, 1024)) 
+  full_1 = tf.nn.relu(full_layer(conv2_flat, size_hidden_layer)) 
 
   # for dropout
   keep_prob = tf.placeholder(tf.float32)
