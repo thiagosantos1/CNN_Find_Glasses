@@ -13,7 +13,7 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
 3) Feed the final result to our models( perceptrons, CNN, ANN and others) to classify a picture as having glass or not.
 
 
-# Code Data-Preprocess
+# Data-Preprocessing
 
 * In this project we have 2 different python codes for Data-Preprocess:
 
