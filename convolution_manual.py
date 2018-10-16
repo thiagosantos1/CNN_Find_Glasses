@@ -86,7 +86,7 @@ def convolutional(img, width,height, filter_conv=[[-1,-1,-1], [-1,4,-1], [-1,-1,
         elif sum_dot > brightness[2]:
           sum_dot = 100
         else:
-          sum_dot = 0
+          sum_dot = 0 
 
       output_img_conv[line_height][line_weidth] = sum_dot
 
@@ -103,8 +103,8 @@ def convert_all_convolution():
   #filter_conv_=[[1/16,1/8,1/16], [1/8,1/4,1/8], [1/16,1/8,1/16]] # - The information diffuses nearly equally among all pixels; 
                                                                 # Gaussian blur or as Gaussian smoothing
 
-  main_folder = ['dataset/faces_training_original','dataset/faces_test_original']
-  folder_to   = ['dataset/faces_training','dataset/faces_test']
+  main_folder = ['dataset/faces_original']
+  folder_to   = ['dataset/faces_training_test']
 
   try:
     index = 0
@@ -128,15 +128,15 @@ def convert_all_convolution():
 
 if __name__ == '__main__':
   # filter_conv_=[[0,-1,0], [-1,4,-1], [0,-1,0]]
-  # img_path = 'dataset/faces_training_original/1/face_1011.pgm'
+  # img_path = 'dataset/faces_training_original/1/face_108.pgm'
   # img = read_images(img_path)
   # width,height = get_width_height(img)
   # output_img_ReLu = convolutional(img,width,height,filter_conv=filter_conv_, brightness=[150,80,50])
 
+  # display_img(img)
   # display_img(output_img_ReLu)
 
   convert_all_convolution()
-  convert_training_test_to_idx3()
   convert_all_imgs_to_idx3()
 
 

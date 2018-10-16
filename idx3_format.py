@@ -38,7 +38,7 @@ def convert_training_test_to_idx3():
 
 def convert_all_imgs_to_idx3():
   # Load from and save to
-  Names = [['dataset/faces_training','train'], ['dataset/faces_test','test']]
+  Names = [['dataset/faces_training_test','train_test']]
   FileList = []
 
   for name in Names:
@@ -48,11 +48,10 @@ def convert_all_imgs_to_idx3():
         if filename.endswith(".pgm"):
           FileList.append(os.path.join(name[0],dirname,filename))
 
-  save_imgs_labes_to_idx3(FileList, "all")
+  save_imgs_labes_to_idx3(FileList, name[1])
 
 def save_imgs_labes_to_idx3(FileList, name_out):
 
-  shuffle(FileList) # Usefull for further segmenting the validation set
   width = 0
   height = 0
   data_image = array('B')
@@ -108,7 +107,7 @@ def display_img(img):
   plt.show()
   plt.close('all')
 
-def load_img_lbl_idx3(dataset="training", classes=np.arange(2), path=".", size = 400):
+def load_img_lbl_idx3(dataset="all", classes=np.arange(2), path=".", size = 400):
   if dataset == "training":
       fname_img = os.path.join(path, 'train-images-idx3-ubyte')
       fname_lbl = os.path.join(path, 'train-labels-idx1-ubyte')
@@ -116,8 +115,8 @@ def load_img_lbl_idx3(dataset="training", classes=np.arange(2), path=".", size =
       fname_img = os.path.join(path, 'test-images-idx3-ubyte')
       fname_lbl = os.path.join(path, 'test-labels-idx1-ubyte')
   elif dataset == "all":
-      fname_img = os.path.join(path, 'all-images-idx3-ubyte')
-      fname_lbl = os.path.join(path, 'all-labels-idx1-ubyte')
+      fname_img = os.path.join(path, 'train_test-images-idx3-ubyte')
+      fname_lbl = os.path.join(path, 'train_test-labels-idx1-ubyte')
 
   else:
       raise ValueError("dataset must be 'testing' or 'training'")
