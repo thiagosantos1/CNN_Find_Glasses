@@ -142,7 +142,8 @@ def main():
 
       sess.run(optimizer_train, feed_dict={x: batch_xs, y: batch_ys, keep_prob: 0.5})
 
-    test_accuracy = sess.run(accuracy, feed_dict={x: X_test, y: y_test, keep_prob: 1.0})
+    batch_xs, batch_ys = next_batch(80,X_test, y_test, size_test)
+    test_accuracy = sess.run(accuracy, feed_dict={x: batch_xs, y: batch_ys, keep_prob: 1.0})
     print("test accuracy: {}".format(test_accuracy))
 
 

@@ -52,7 +52,7 @@ def get_width_height(img):
   return [len(img[0]), len(img)]
 
 
-def convolutional(img, width,height, filter_conv=[[-1,-1,-1], [-1,4,-1], [-1,-1,-1]], h_stride=1, v_tride=1, paddings=0, out_half_size=False):
+def convolutional(img, width,height, filter_conv=[[-1,-1,-1], [-1,4,-1], [-1,-1,-1]], brightness=[], h_stride=1, v_tride=1, paddings=0, out_half_size=False):
 
   fw = len(filter_conv[0])
   fh = len(filter_conv)
@@ -76,6 +76,18 @@ def convolutional(img, width,height, filter_conv=[[-1,-1,-1], [-1,4,-1], [-1,-1,
 
       # ReLu the pixel, and make sure it goes just till 255, cause we are working with chromatic pics
       sum_dot = max(0,min(sum_dot,255))
+
+      # check if user has input a brightness paramter. if sum > brightness, make it 255. otherwise, make it 0
+      if len(brightness) == 3:
+        if sum_dot > brightness[0]:
+          sum_dot = 255
+        elif sum_dot > brightness[1]:
+          sum_dot = 180
+        elif sum_dot > brightness[2]:
+          sum_dot = 100
+        else:
+          sum_dot = 0
+
       output_img_conv[line_height][line_weidth] = sum_dot
 
   # return half of the size
@@ -86,9 +98,9 @@ def convolutional(img, width,height, filter_conv=[[-1,-1,-1], [-1,4,-1], [-1,-1,
 
 def convert_all_convolution():
 
-  #filter_conv=[[-1,-1,-1], [-1,8,-1], [-1,-1,-1]] # for edge and few more details
-  filter_conv=[[0,-1,0], [-1,4,-1], [0,-1,0]] # for edge
-  #filter_conv=[[1/16,1/8,1/16], [1/8,1/4,1/8], [1/16,1/8,1/16]] # - The information diffuses nearly equally among all pixels; 
+  #filter_conv_=[[-1,-1,-1], [-1,8,-1], [-1,-1,-1]] # for edge and few more details
+  filter_conv_=[[0,-1,0], [-1,4,-1], [0,-1,0]] # for edge
+  #filter_conv_=[[1/16,1/8,1/16], [1/8,1/4,1/8], [1/16,1/8,1/16]] # - The information diffuses nearly equally among all pixels; 
                                                                 # Gaussian blur or as Gaussian smoothing
 
   main_folder = ['dataset/faces_training_original','dataset/faces_test_original']
@@ -105,7 +117,7 @@ def convert_all_convolution():
             save_path_to = os.path.join(folder_to[index],dirname,filename)
             img = read_images(img_path)
             width,height = get_width_height(img)
-            output_img_ReLu = convolutional(img,width,height,filter_conv)
+            output_img_ReLu = convolutional(img,width,height,filter_conv=filter_conv_, brightness=[150,80,50])
             save_img(output_img_ReLu, path_to=save_path_to)
 
       index += 1
@@ -115,6 +127,14 @@ def convert_all_convolution():
 
 
 if __name__ == '__main__':
+  # filter_conv_=[[0,-1,0], [-1,4,-1], [0,-1,0]]
+  # img_path = 'dataset/faces_training_original/1/face_1011.pgm'
+  # img = read_images(img_path)
+  # width,height = get_width_height(img)
+  # output_img_ReLu = convolutional(img,width,height,filter_conv=filter_conv_, brightness=[150,80,50])
+
+  # display_img(output_img_ReLu)
+
   convert_all_convolution()
   convert_training_test_to_idx3()
   convert_all_imgs_to_idx3()
