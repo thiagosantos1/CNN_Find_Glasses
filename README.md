@@ -6,7 +6,7 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
 
 # Steps
 
-1) Run a manual convolutional with a filter for edge detecter and save the new pictures
+1) Run a manual convolutional with a filter for edge detecter and save the new pictures. We also make the picture brighter where there are more details. This helps to highlight the glasses
 
 2) Convert all convoluted images to idx3 - Ubyte 
 
