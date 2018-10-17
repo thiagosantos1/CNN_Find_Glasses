@@ -13,6 +13,8 @@ and give to a fully connected layer with one hidden layer. We will use a simplif
 
 import tensorflow as tf
 from idx3_format import load_img_lbl_idx3
+from idx3_format import display_img
+from sklearn.model_selection import train_test_split
 import numpy as np
 import os
 import random
@@ -42,8 +44,8 @@ def conv_layer(input_, shape):
 # with X as a result of a convolutional layer, we will max pool
 # with a filter of 2x2
 # this basically gets the most important features, and reduces the size of the inputs for the final densed layer
-def max_pool_2x2(x):
-  return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
+def max_pool_2x2(x, ksize_=[1, 2, 2, 1], strides_=[1, 2, 2, 1]):
+  return tf.nn.max_pool(x, ksize=ksize_, strides=strides_, padding='SAME')
 
 # After all convolutional layers has been applied, we get all the final results, and make a full connected layer
 def full_layer(input, size):
@@ -65,24 +67,23 @@ def next_batch(MINIBATCH_SIZE, X_train, y_train, size_train):
 def main():
 
   #### Data pre-processing
-  X_train, y_train = load_img_lbl_idx3(dataset='training', path='dataset')
-  X_test, y_test = load_img_lbl_idx3(dataset='testing', path='dataset')
+  X_all, y_all = load_img_lbl_idx3(dataset='all', path='dataset') 
+  X_train, X_test, y_train, y_test = train_test_split(X_all, y_all, test_size=0.25, shuffle=True)
 
   size_train = len(X_train)
   size_test = len(X_test)
   size_classes = len(y_train[0])
   height_pic = len(X_train[0])
   width_pics = len(X_train[0][0])
-
   # flatten each picture of Training and Testing images
   X_train = X_train.reshape(size_train, height_pic*width_pics)
   X_test = X_test.reshape(size_test, height_pic*width_pics)
 
-  # Training paramters
-  NUM_STEPS = 1000
-  MINIBATCH_SIZE = 20
+  # HYPER paramters
+  NUM_STEPS = 2000
+  MINIBATCH_SIZE = 80
   learning_rate_ = 0.0001
-  size_hidden_layer = 16
+  size_hidden_layer = 64
 
   #### create model architecture ####
 
@@ -103,13 +104,20 @@ def main():
   conv2 = conv_layer(conv1_pool, shape=[5, 5, 32, 64]) # the result here will be 56X46X64
   conv2_pool = max_pool_2x2(conv2) # the result will be 28X23X64
 
+  # create a third layer
+  conv3 = conv_layer(conv2_pool, shape=[5, 5, 64, 128]) # the result here will be 28X23X128
+  conv3_pool = max_pool_2x2(conv3) # the result will be 14X12X128
+
+  # create a forth layer
+  conv4 = conv_layer(conv3_pool, shape=[5, 5, 128, 256]) # the result here will be 28X23X256
+  conv4_pool = max_pool_2x2(conv4) # the result will be 7X6X256
+
   # flat the final results, for then put in a fully connected layer
   # since the result data is 28X23X64 and we want to flat, Just a big array
-  conv2_flat = tf.reshape(conv2_pool, [-1, 28*23*64])
+  conv5_flat = tf.reshape(conv4_pool, [-1, 7*6*256])
 
   # create fully connected layer and train - Foward
-  # 1024 is the number of neuron in the hidden layer after the connect layer
-  full_1 = tf.nn.relu(full_layer(conv2_flat, size_hidden_layer)) 
+  full_1 = tf.nn.relu(full_layer(conv5_flat, size_hidden_layer)) 
 
   # for dropout
   keep_prob = tf.placeholder(tf.float32)
@@ -143,7 +151,7 @@ def main():
       sess.run(optimizer_train, feed_dict={x: batch_xs, y: batch_ys, keep_prob: 0.5})
 
     batch_xs, batch_ys = next_batch(80,X_test, y_test, size_test)
-    test_accuracy = sess.run(accuracy, feed_dict={x: batch_xs, y: batch_ys, keep_prob: 1.0})
+    test_accuracy = sess.run(accuracy, feed_dict={x: X_test, y: y_test, keep_prob: 1.0})
     print("test accuracy: {}".format(test_accuracy))
 
 
