@@ -107,7 +107,7 @@ def display_img(img):
   plt.show()
   plt.close('all')
 
-def load_img_lbl_idx3(dataset="all", classes=np.arange(2), path=".", size = 400):
+def load_img_lbl_idx3(dataset="all", classes=np.arange(2), path=".", size = 400, rotate=False):
   if dataset == "training":
       fname_img = os.path.join(path, 'train-images-idx3-ubyte')
       fname_lbl = os.path.join(path, 'train-labels-idx1-ubyte')
