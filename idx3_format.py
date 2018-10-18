@@ -14,6 +14,7 @@ import os
 from PIL import Image
 from array import *
 from random import shuffle
+import random
 import numpy as np
 import imageio
 import matplotlib.pyplot as plt
@@ -134,12 +135,28 @@ def load_img_lbl_idx3(dataset="all", classes=np.arange(2), path=".", size = 400,
 
   ind = [ k for k in range(size) if lbl[k] in classes ]
   N = size 
+  if rotate:
+    N *= 2
+
   images = np.zeros((N, rows, cols), dtype=np.uint8)
   labels = np.zeros((N, len(classes)),dtype=np.int8)
-  for i in range(N): #int(len(ind) * size/100.)):
-    images[i] = np.array(img[ ind[i]*rows*cols : (ind[i]+1)*rows*cols ])\
+  index = 0
+  for i in range(N//2): #int(len(ind) * size/100.)):
+    images[index] = np.array(img[ ind[i]*rows*cols : (ind[i]+1)*rows*cols ])\
                 .reshape((rows, cols))
-    labels[i][lbl[ind[i]]] = 1
+    labels[index][lbl[ind[i]]] = 1
+
+    index +=1 
+    if rotate:
+      rot90_n_times = random.randint(1,2) # sort to rotate that image 90 degress n times
+      img_rot = np.rot90(images[index-1])
+      for rotation in range(rot90_n_times):
+        img_rot = np.rot90(img_rot)
+
+      images[index] = img_rot
+      labels[index][lbl[ind[i]]] = 1
+
+      index +=1
 
   return images, labels
 

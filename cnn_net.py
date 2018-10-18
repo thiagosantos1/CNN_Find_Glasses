@@ -67,7 +67,7 @@ def next_batch(MINIBATCH_SIZE, X_train, y_train, size_train):
 def main(): 
 
   #### Data pre-processing
-  X_all, y_all = load_img_lbl_idx3(dataset='all', path='dataset', rotate=True) 
+  X_all, y_all = load_img_lbl_idx3(dataset='all', path='dataset', rotate=False) 
   X_train, X_test, y_train, y_test = train_test_split(X_all, y_all, test_size=0.2, shuffle=True)
 
   size_train = len(X_train)
@@ -80,7 +80,7 @@ def main():
   X_test = X_test.reshape(size_test, height_pic*width_pics)
 
   # HYPER paramters
-  NUM_STEPS = 2000
+  NUM_STEPS = 40000
   MINIBATCH_SIZE = 40
   learning_rate_ = 0.00001
   size_hidden_layer = 64
