@@ -68,7 +68,7 @@ def main():
 
   #### Data pre-processing
   X_all, y_all = load_img_lbl_idx3(dataset='all', path='dataset') 
-  X_train, X_test, y_train, y_test = train_test_split(X_all, y_all, test_size=0.25, shuffle=True)
+  X_train, X_test, y_train, y_test = train_test_split(X_all, y_all, test_size=0.2, shuffle=True)
 
   size_train = len(X_train)
   size_test = len(X_test)
@@ -81,8 +81,8 @@ def main():
 
   # HYPER paramters
   NUM_STEPS = 2000
-  MINIBATCH_SIZE = 80
-  learning_rate_ = 0.0001
+  MINIBATCH_SIZE = 40
+  learning_rate_ = 0.00001
   size_hidden_layer = 64
 
   #### create model architecture ####
@@ -97,24 +97,24 @@ def main():
 
   # create first convolutional followed by pooling
   conv1 = conv_layer(x_image, shape=[5, 5, 1, 32]) # in this case, a filter of 5x5, used 32 times over the image
-  # the result of conv1, which is 112x92x32, we feed to pooling
-  conv1_pool = max_pool_2x2(conv1) # the result of this first polling will be 56X46X32
+  # the result of conv1, which is 112x112x32, we feed to pooling
+  conv1_pool = max_pool_2x2(conv1) # the result of this first polling will be 56X56X32
 
   # create second convolutional followed by pooling. 32 came from the first convol
-  conv2 = conv_layer(conv1_pool, shape=[5, 5, 32, 64]) # the result here will be 56X46X64
-  conv2_pool = max_pool_2x2(conv2) # the result will be 28X23X64
+  conv2 = conv_layer(conv1_pool, shape=[5, 5, 32, 64]) # the result here will be 56X56X64
+  conv2_pool = max_pool_2x2(conv2) # the result will be 28X28X64
 
   # create a third layer
-  conv3 = conv_layer(conv2_pool, shape=[5, 5, 64, 128]) # the result here will be 28X23X128
-  conv3_pool = max_pool_2x2(conv3) # the result will be 14X12X128
+  conv3 = conv_layer(conv2_pool, shape=[5, 5, 64, 128]) # the result here will be 28X28X128
+  conv3_pool = max_pool_2x2(conv3) # the result will be 14X14X128
 
   # create a forth layer
-  conv4 = conv_layer(conv3_pool, shape=[5, 5, 128, 256]) # the result here will be 28X23X256
-  conv4_pool = max_pool_2x2(conv4) # the result will be 7X6X256
+  conv4 = conv_layer(conv3_pool, shape=[5, 5, 128, 256]) # the result here will be 14X14X256
+  conv4_pool = max_pool_2x2(conv4) # the result will be 7X7X256
 
   # flat the final results, for then put in a fully connected layer
   # since the result data is 28X23X64 and we want to flat, Just a big array
-  conv5_flat = tf.reshape(conv4_pool, [-1, 7*6*256])
+  conv5_flat = tf.reshape(conv4_pool, [-1, 7*7*256])
 
   # create fully connected layer and train - Foward
   full_1 = tf.nn.relu(full_layer(conv5_flat, size_hidden_layer)) 
@@ -148,7 +148,7 @@ def main():
         train_accuracy = sess.run(accuracy, feed_dict={x: batch_xs, y: batch_ys, keep_prob: 1.0})
         print("step {}, training accuracy {}".format(i, train_accuracy))
 
-      sess.run(optimizer_train, feed_dict={x: batch_xs, y: batch_ys, keep_prob: 0.5})
+      sess.run(optimizer_train, feed_dict={x: batch_xs, y: batch_ys, keep_prob: 0.75})
 
     batch_xs, batch_ys = next_batch(80,X_test, y_test, size_test)
     test_accuracy = sess.run(accuracy, feed_dict={x: X_test, y: y_test, keep_prob: 1.0})
