@@ -153,6 +153,8 @@ def main():
     batch_xs, batch_ys = next_batch(80,X_test, y_test, size_test)
     test_accuracy = sess.run(accuracy, feed_dict={x: X_test, y: y_test, keep_prob: 1.0})
     print("test accuracy: {}".format(test_accuracy))
+
+    # trying to get some pics of what the network is looking at
     a = sess.run(conv1_pool, feed_dict={x: [X_test[0]], y: [y_test[0]], keep_prob: 1.0})
     c = a[0][0:56][0:56][3]
     print( c.shape)
