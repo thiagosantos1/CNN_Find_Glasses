@@ -20,6 +20,7 @@ import os
 import random
 import pandas as pad
 import os
+import sys
 
 
 class Model:
@@ -43,12 +44,17 @@ class Model:
     self.y_train = y_train_
     self.y_test  = y_test_
 
+    # set to true if it's the first training - Not reseting a graph
+    self.first_training = True
+
 
     #### create model architecture ####
 
     # if had created some graph before/training, load it
-    if (os.stat("saved_model/model.ckpt").st_size != 0 ):
-      tf.reset_default_graph()
+    number_files = len(os.listdir("saved_model"))
+    if (number_files > 0 ):
+      #tf.reset_default_graph()
+      self.first_training = False # reseting a graph
 
     # placeholder for the data training. One neuron for each pixel
     self.x = tf.placeholder(tf.float32, [None, self.height_pic * self.width_pics])
@@ -147,24 +153,17 @@ class Model:
 
 
   def training(self, save_to="saved_model/model.ckpt"):
-    v1 = tf.get_variable("v1", shape=[3], initializer = tf.zeros_initializer)
-    v2 = tf.get_variable("v2", shape=[5], initializer = tf.zeros_initializer)
-
-    inc_v1 = v1.assign(v1+1)
-    dec_v2 = v2.assign(v2-1)
-
+    
+    # initialize variable
     self.sess.run(tf.global_variables_initializer())
+
     # create a variable to save graph
     saver = tf.train.Saver()
+
     # start from where we left last time
-    if (os.stat(save_to).st_size != 0 ):
+    if (self.first_training == False):
       saver.restore(self.sess, save_to)
 
-    print("v1 : %s" % v1.eval())
-    print("v2 : %s" % v2.eval())
-
-    inc_v1.op.run(session=self.sess)
-    dec_v2.op.run(session=self.sess)
     for i in range(self.NUM_STEPS):
       batch_xs, batch_ys = self.next_batch(self.X_train, self.y_train, self.size_train)
       if i % 100 == 0: # to print the results every 100 steps
@@ -173,10 +172,22 @@ class Model:
 
       self.sess.run(self.optimizer_train, feed_dict={self.x: batch_xs, self.y: batch_ys, self.keep_prob: 0.75})
 
-    # save new training
+    #save new training
     saver.save(self.sess, save_to)
 
-  def test(self, img=[], label=[], num_steps=1):
+  def test(self, img=[], label=[], num_steps=1, load_from="saved_model/model.ckpt"):
+
+    # create a variable to load trained graph
+    saver = tf.train.Saver()
+
+    # start from where we left last time
+    if (self.first_training == True):
+      print("You must train the model first")
+      sys.exit()
+
+    # restore Graph trained
+    saver.restore(self.sess, load_from)
+
     batch_xs, batch_ys = img, label
     test_accuracy = 0
     for i in range(num_steps):
