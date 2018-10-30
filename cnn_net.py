@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# chmod u+x
+# -*- coding: utf-8 -*-  
+
 """
 Author: Thiago Santos
 Master thesis project - Fall 2018
@@ -5,11 +9,6 @@ Master thesis project - Fall 2018
 We will use convolution layers, each one followed by a max pooling. At the end, we flatten the results, 
 and give to a fully connected layer with one hidden layer. We will use a simplifcation of a restnet architecture.
 """
-
-#!/usr/bin/env python3
-# chmod u+x
-# -*- coding: utf-8 -*-  
-
 
 import tensorflow as tf
 from idx3_format import load_img_lbl_idx3
