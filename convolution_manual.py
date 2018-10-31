@@ -24,7 +24,7 @@ from idx3_format import convert_training_test_to_idx3
 from idx3_format import convert_all_imgs_to_idx3
 from idx3_format import load_img_lbl_idx3
 
-def read_images(img_path):
+def read_image(img_path):
   try:
     img = np.array(imageio.imread(img_path), dtype=np.uint8)
   except:
@@ -52,7 +52,7 @@ def get_width_height(img):
   return [len(img[0]), len(img)]
 
 
-def convolutional(img, width,height, filter_conv=[[-1,-1,-1], [-1,4,-1], [-1,-1,-1]], brightness=[], h_stride=1, v_tride=1, paddings=0, out_half_size=False):
+def convolutional(img, width,height, filter_conv=[[0,-1,0], [-1,4,-1], [0,-1,0]], brightness=[150,80,50], h_stride=1, v_tride=1, paddings=0, out_half_size=False):
 
   fw = len(filter_conv[0])
   fh = len(filter_conv)
@@ -99,7 +99,8 @@ def convolutional(img, width,height, filter_conv=[[-1,-1,-1], [-1,4,-1], [-1,-1,
 def convert_all_convolution():
 
   #filter_conv_=[[-1,-1,-1], [-1,8,-1], [-1,-1,-1]] # for edge and few more details
-  filter_conv_=[[0,-1,0], [-1,4,-1], [0,-1,0]] # for edge
+  #filter_conv_= [[-1,-1,-1], [-1,4,-1], [-1,-1,-1]]
+  #filter_conv_=[[0,-1,0], [-1,4,-1], [0,-1,0]] # for edge
   #filter_conv_=[[1/16,1/8,1/16], [1/8,1/4,1/8], [1/16,1/8,1/16]] # - The information diffuses nearly equally among all pixels; 
                                                                 # Gaussian blur or as Gaussian smoothing
 
@@ -115,9 +116,9 @@ def convert_all_convolution():
           if filename.endswith(".pgm"):
             img_path     = os.path.join(name,dirname,filename)
             save_path_to = os.path.join(folder_to[index],dirname,filename)
-            img = read_images(img_path)
+            img = read_image(img_path)
             width,height = get_width_height(img)
-            output_img_ReLu = convolutional(img,width,height,filter_conv=filter_conv_, brightness=[150,80,50])
+            output_img_ReLu = convolutional(img,width,height, brightness=[140,70,40])
             save_img(output_img_ReLu, path_to=save_path_to)
 
       index += 1
@@ -129,7 +130,7 @@ def convert_all_convolution():
 if __name__ == '__main__':
   # filter_conv_=[[0,-1,0], [-1,4,-1], [0,-1,0]]
   # img_path = 'dataset/faces_training_original/1/face_108.pgm'
-  # img = read_images(img_path)
+  # img = read_image(img_path)
   # width,height = get_width_height(img)
   # output_img_ReLu = convolutional(img,width,height,filter_conv=filter_conv_, brightness=[150,80,50])
 

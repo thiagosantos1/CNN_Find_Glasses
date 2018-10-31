@@ -14,6 +14,7 @@ and give to a fully connected layer with one hidden layer. We will use a simplif
 import tensorflow as tf
 from idx3_format import load_img_lbl_idx3
 from idx3_format import display_img
+from convolution_manual import *
 from sklearn.model_selection import train_test_split
 import numpy as np
 import os
@@ -151,6 +152,18 @@ class Model:
 
     return data[l_bound:u_bound], label_data[l_bound:u_bound]
 
+  def restore_model(self, load_from="saved_model/model.ckpt"):
+
+    # create a variable to load trained graph
+    saver = tf.train.Saver()
+
+    # start from where we left last time
+    if (self.first_training == True):
+      print("You must train the model first")
+      sys.exit()
+
+    # restore Graph trained
+    saver.restore(self.sess, load_from)
 
   def training(self, save_to="saved_model/model.ckpt"):
     
@@ -177,16 +190,8 @@ class Model:
 
   def test(self, img=[], label=[], num_steps=1, load_from="saved_model/model.ckpt"):
 
-    # create a variable to load trained graph
-    saver = tf.train.Saver()
-
-    # start from where we left last time
-    if (self.first_training == True):
-      print("You must train the model first")
-      sys.exit()
-
-    # restore Graph trained
-    saver.restore(self.sess, load_from)
+    # restore model with last training
+    self.restore_model()
 
     batch_xs, batch_ys = img, label
     test_accuracy = 0
@@ -198,8 +203,21 @@ class Model:
 
     print("test accuracy: {}".format(test_accuracy/num_steps))
 
+  # test just for one image
+  def single_test(self, img):
+
+    # restore model with last training
+    self.restore_model()
+
+    pred = self.sess.run(self.y_conv, feed_dict={self.x: [img.reshape(width*height)], self.keep_prob: 1.0})
+    pred = tf.argmax(pred, 1)
+    
+    # 0 for non-glasses and 1 for glasses
+    return self.sess.run(pred)[0]
+
 
 if __name__ == '__main__':
+
   os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
   tf.logging.set_verbosity(tf.logging.ERROR)
 
@@ -212,6 +230,15 @@ if __name__ == '__main__':
   model.test( [model.X_test[0]], [model.y_test[0]])
   #model.test(num_steps=5)
 
+  #img = read_image("dataset/faces_original/1/faces_2638.pgm")
+  img = read_image("bill_2.pgm")
+  width,height = get_width_height(img)
+  output_img_ReLu = convolutional(img,width,height)
+  
+  prediction = model.single_test(output_img_ReLu)
+
+  print(prediction)
+
   """
     # trying to get some pics of what the network is looking at
     a = sess.run(conv1_pool, feed_dict={x: [X_test[0]], y: [y_test[0]], keep_prob: 1.0})
@@ -222,3 +249,4 @@ if __name__ == '__main__':
     display_img(X_test[0].reshape(112,112))
     display_img(d)
   """
+
