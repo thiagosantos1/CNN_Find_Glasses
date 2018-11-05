@@ -96,7 +96,7 @@ def convolutional(img, width,height, filter_conv=[[0,-1,0], [-1,4,-1], [0,-1,0]]
   
   return np.pad(output_img_conv, (1,1), 'constant', constant_values=(0, 0))
 
-def convert_all_convolution():
+def convert_all_convolution(brightness_=[150,80,50]):
 
   #filter_conv_=[[-1,-1,-1], [-1,8,-1], [-1,-1,-1]] # for edge and few more details
   #filter_conv_= [[-1,-1,-1], [-1,4,-1], [-1,-1,-1]]
@@ -118,7 +118,7 @@ def convert_all_convolution():
             save_path_to = os.path.join(folder_to[index],dirname,filename)
             img = read_image(img_path)
             width,height = get_width_height(img)
-            output_img_ReLu = convolutional(img,width,height, brightness=[140,70,40])
+            output_img_ReLu = convolutional(img,width,height, brightness=brightness_)
             save_img(output_img_ReLu, path_to=save_path_to)
 
       index += 1
@@ -137,9 +137,12 @@ if __name__ == '__main__':
   # display_img(img)
   # display_img(output_img_ReLu)
 
-  convert_all_convolution()
-  convert_all_imgs_to_idx3()
+  #convert_all_convolution(brightness_=[])
+  convert_all_imgs_to_idx3(Names = [['dataset/faces_original','train_test']])
 
+  # img,lbs = load_img_lbl_idx3(path="dataset")
+
+  # display_img(img[54])
 
 
 

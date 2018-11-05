@@ -28,7 +28,7 @@ class Model:
 
   sess = tf.Session()
 
-  def __init__(self, X_train_, X_test_, y_train_, y_test_, NUM_STEPS_ = 10000, MINIBATCH_SIZE_ = 40, learning_rate_ = 0.00001, size_hidden_layer_ = 64):
+  def __init__(self, X_train_, X_test_, y_train_, y_test_, filter_size=7, NUM_STEPS_ = 50000, MINIBATCH_SIZE_ = 25, learning_rate_ = 0.00001, size_hidden_layer_ = 64):
     self.size_train = len(X_train_)
     self.size_test = len(X_test_)
     self.size_classes = len(y_train_[0])
@@ -65,32 +65,46 @@ class Model:
     # reshape for WxH, and only macro - 1 channel
     self.x_image = tf.reshape(self.x, [-1, self.height_pic, self.width_pics, 1])
 
+    # for dropout
+    self.keep_prob = tf.placeholder(tf.float32)
+
     # create first convolutional followed by pooling
-    self.conv1 = self.conv_layer(self.x_image, shape=[5, 5, 1, 32]) # in this case, a filter of 5x5, used 32 times over the image
+    self.conv1 = self.conv_layer(self.x_image, shape=[filter_size, filter_size, 1, 32]) # in this case, a filter of filter_sizexfilter_size, used 32 times over the image
+    self.conv1_2 = self.conv_layer(self.conv1, shape=[filter_size, filter_size, 32, 32])
+    self.conv1_3 = self.conv_layer(self.conv1_2, shape=[filter_size, filter_size, 32, 32])
     # the result of conv1, which is 112x112x32, we feed to pooling
-    self.conv1_pool = self.max_pool_2x2(self.conv1) # the result of this first polling will be 56X56X32
+    self.conv1_pool = self.max_pool_2x2(self.conv1_3) # the result of this first polling will be 56X56X32
+    self.conv1_pool_drop = tf.nn.dropout(self.conv1_pool, keep_prob=self.keep_prob)
 
     # create second convolutional followed by pooling. 32 came from the first convol
-    self.conv2 = self.conv_layer(self.conv1_pool, shape=[5, 5, 32, 64]) # the result here will be 56X56X64
-    self.conv2_pool = self.max_pool_2x2(self.conv2) # the result will be 28X28X64
+    self.conv2 = self.conv_layer(self.conv1_pool_drop, shape=[filter_size, filter_size, 32, 64]) # the result here will be 56X56X64
+    self.conv2_2 = self.conv_layer(self.conv2, shape=[filter_size, filter_size, 64, 64])
+    self.conv2_3 = self.conv_layer(self.conv2_2, shape=[filter_size, filter_size, 64, 64])
+    self.conv2_pool = self.max_pool_2x2(self.conv2_3) # the result will be 28X28X64
+    self.conv2_pool_drop = tf.nn.dropout(self.conv2_pool, keep_prob=self.keep_prob) # the result will be 28X28X64
 
     # create a third layer
-    self.conv3 = self.conv_layer(self.conv2_pool, shape=[5, 5, 64, 128]) # the result here will be 28X28X128
-    self.conv3_pool = self.max_pool_2x2(self.conv3) # the result will be 14X14X128
+    self.conv3 = self.conv_layer(self.conv2_pool_drop, shape=[filter_size, filter_size, 64, 128]) # the result here will be 28X28X128
+    self.conv3_2 = self.conv_layer(self.conv3, shape=[filter_size, filter_size, 128, 128])
+    self.conv3_3 = self.conv_layer(self.conv3_2, shape=[filter_size, filter_size, 128, 128])
+    self.conv3_pool = self.max_pool_2x2(self.conv3_3) # the result will be 14X14X128
+    self.conv3_pool_drop = tf.nn.dropout(self.conv3_pool, keep_prob=self.keep_prob)
 
     # create a forth layer
-    self.conv4 = self.conv_layer(self.conv3_pool, shape=[5, 5, 128, 256]) # the result here will be 14X14X256
-    self.conv4_pool = self.max_pool_2x2(self.conv4) # the result will be 7X7X256
+    self.conv4 = self.conv_layer(self.conv3_pool_drop, shape=[filter_size, filter_size, 128, 256]) # the result here will be 14X14X256
+    self.conv4_2 = self.conv_layer(self.conv4, shape=[filter_size, filter_size, 256, 256])
+    self.conv4_3 = self.conv_layer(self.conv4_2, shape=[filter_size, filter_size, 256, 256])
+    self.conv4_pool = self.max_pool_2x2(self.conv4_3) # the result will be 7X7X256
+    self.conv4_pool_drop = tf.nn.dropout(self.conv4_pool, keep_prob=self.keep_prob)
 
     # flat the final results, for then put in a fully connected layer
     # since the result data is 28X23X64 and we want to flat, Just a big array
-    self.conv5_flat = tf.reshape(self.conv4_pool, [-1, 7*7*256])
+    self.conv5_flat = tf.reshape(self.conv4_pool_drop, [-1, 7*7*256])
 
     # create fully connected layer and train - Foward
     self.full_1 = tf.nn.relu(self.full_layer(self.conv5_flat, self.size_hidden_layer))
 
-    # for dropout
-    self.keep_prob = tf.placeholder(tf.float32)
+    
     self.full1_drop = tf.nn.dropout(self.full_1, keep_prob=self.keep_prob) # for test, we will use full drop(no drops)
 
     # for output - For training
@@ -179,9 +193,12 @@ class Model:
 
     for i in range(self.NUM_STEPS):
       batch_xs, batch_ys = self.next_batch(self.X_train, self.y_train, self.size_train)
-      if i % 100 == 0: # to print the results every 100 steps
+      if i % 1000 == 0: # to print the results every 100 steps
         train_accuracy = self.sess.run(self.accuracy, feed_dict={self.x: batch_xs, self.y: batch_ys, self.keep_prob: 1.0})
         print("step {}, training accuracy {}".format(i, train_accuracy))
+        #save new training
+        saver.save(self.sess, save_to)
+        self.first_training == False
 
       self.sess.run(self.optimizer_train, feed_dict={self.x: batch_xs, self.y: batch_ys, self.keep_prob: 0.75})
 
@@ -227,20 +244,20 @@ if __name__ == '__main__':
 
   #model = Model(X_train, X_test, y_train, y_test, NUM_STEPS_ = 1, MINIBATCH_SIZE_ = 5, learning_rate_ = 0.001, size_hidden_layer_ = 5 )
   model = Model(X_train, X_test, y_train, y_test)
-  #model.training()
+  model.training()
   #model.test( [model.X_test[0]], [model.y_test[0]])
-  #model.test()
+  model.test()
   #model.test(num_steps=5)
 
   
   #img = read_image("dataset/faces_original/1/faces_2700.pgm")
-  img = read_image("glasses2.pgm")
-  width,height = get_width_height(img)
-  output_img_ReLu = convolutional(img,width,height)
-  display_img(output_img_ReLu)
-  prediction = model.single_test(output_img_ReLu)
+  # img = read_image("bill_2.pgm")
+  # width,height = get_width_height(img)
+  # output_img_ReLu = convolutional(img,width,height,brightness=[])
+  # #display_img(img)
+  # prediction = model.single_test(img)
 
-  print(prediction)
+  # print(prediction)
 
   """
     # trying to get some pics of what the network is looking at

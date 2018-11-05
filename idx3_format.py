@@ -2,7 +2,7 @@
 # chmod u+x
 # -*- coding: utf-8 -*-  
 
-"""
+""" 
 Author: Thiago Santos
 Master thesis project - Fall 2018
 
@@ -36,9 +36,7 @@ def convert_training_test_to_idx3():
     save_imgs_labes_to_idx3(FileList, name[1])
 
 
-def convert_all_imgs_to_idx3():
-  # Load from and save to
-  Names = [['dataset/faces_training_test','train_test']]
+def convert_all_imgs_to_idx3(Names = [['dataset/faces_training_test','train_test']]):
   FileList = []
 
   for name in Names:
