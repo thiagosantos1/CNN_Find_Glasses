@@ -227,7 +227,7 @@ if __name__ == '__main__':
   tf.logging.set_verbosity(tf.logging.ERROR)
 
   #### Data pre-processing
-  X_all, y_all = load_img_lbl_idx3(dataset='all', path='dataset', rotate=True) 
+  X_all, y_all = load_img_lbl_idx3(dataset='all', path='/u1/h2/tsantos2/695_Projects/CNN_Find_Glasses/dataset', rotate=True) 
   X_train, X_test, y_train, y_test = train_test_split(X_all, y_all, test_size=0.2, shuffle=True)
 
   #model = Model(X_train, X_test, y_train, y_test, NUM_STEPS_ = 1, MINIBATCH_SIZE_ = 5, learning_rate_ = 0.001, size_hidden_layer_ = 5 )
@@ -255,7 +255,7 @@ if __name__ == '__main__':
       resul_out.write("yes\n" if prediction ==1 else "no\n")
     else:
       print(prediction)
-      
+
   """
     # trying to get some pics of what the network is looking at
     a = sess.run(conv1_pool, feed_dict={x: [X_test[0]], y: [y_test[0]], keep_prob: 1.0})
