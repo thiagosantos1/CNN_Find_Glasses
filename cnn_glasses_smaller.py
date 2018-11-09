@@ -232,21 +232,30 @@ if __name__ == '__main__':
 
   #model = Model(X_train, X_test, y_train, y_test, NUM_STEPS_ = 1, MINIBATCH_SIZE_ = 5, learning_rate_ = 0.001, size_hidden_layer_ = 5 )
   model = Model(X_train, X_test, y_train, y_test)
-  #model.training()
-  #model.test( [model.X_test[0]], [model.y_test[0]])
-  #model.test()
-  #model.test(num_steps=5)
+  training_test = True
+  img_to_test = ""
+  resul_out = ""
+  if len(sys.argv) >= 2:
+    training_test = False
+    img_to_test = sys.argv[1]
+  if len(sys.argv) >= 3:
+    resul_out = sys.argv[2]
 
-  
-  #img = read_image("dataset/faces_original/1/faces_2700.pgm")
-  img = read_image("~/695_Projects/internet_faces/hard3_1.pgm")
-  width,height = get_width_height(img)
-  #output_img_ReLu = convolutional(img,width,height,brightness=[])
-  #display_img(img)
-  prediction = model.single_test(img)
-
-  print(prediction)
-
+  if training_test:
+    model.training()
+    model.test()
+  else:
+    img = read_image(img_to_test)
+    width,height = get_width_height(img)
+    #output_img_ReLu = convolutional(img,width,height,brightness=[])
+    #display_img(img)
+    prediction = model.single_test(img)
+    if resul_out !="" :
+      resul_out  = open(resul_out, 'w')
+      resul_out.write("yes\n" if prediction ==1 else "no\n")
+    else:
+      print(prediction)
+      
   """
     # trying to get some pics of what the network is looking at
     a = sess.run(conv1_pool, feed_dict={x: [X_test[0]], y: [y_test[0]], keep_prob: 1.0})
