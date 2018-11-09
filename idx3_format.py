@@ -138,7 +138,7 @@ def load_img_lbl_idx3(dataset="all", classes=np.arange(2), path=".", size = 400,
   images = np.zeros((N, rows, cols), dtype=np.uint8)
   labels = np.zeros((N, len(classes)),dtype=np.int8)
   index = 0
-  for i in range(N//2): #int(len(ind) * size/100.)):
+  for i in range(size): #int(len(ind) * size/100.)):
     images[index] = np.array(img[ ind[i]*rows*cols : (ind[i]+1)*rows*cols ])\
                 .reshape((rows, cols))
     labels[index][lbl[ind[i]]] = 1

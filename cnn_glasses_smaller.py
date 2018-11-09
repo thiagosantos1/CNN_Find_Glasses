@@ -28,7 +28,7 @@ class Model:
 
   sess = tf.Session()
 
-  def __init__(self, X_train_, X_test_, y_train_, y_test_, filter_size=7, NUM_STEPS_ = 50000, MINIBATCH_SIZE_ = 30, learning_rate_ = 0.00001, size_hidden_layer_ = 64):
+  def __init__(self, X_train_, X_test_, y_train_, y_test_, filter_size=5, NUM_STEPS_ = 50000, MINIBATCH_SIZE_ = 25, learning_rate_ = 0.00001, size_hidden_layer_ = 64):
     self.size_train = len(X_train_)
     self.size_test = len(X_test_)
     self.size_classes = len(y_train_[0])
@@ -232,20 +232,20 @@ if __name__ == '__main__':
 
   #model = Model(X_train, X_test, y_train, y_test, NUM_STEPS_ = 1, MINIBATCH_SIZE_ = 5, learning_rate_ = 0.001, size_hidden_layer_ = 5 )
   model = Model(X_train, X_test, y_train, y_test)
-  model.training()
+  #model.training()
   #model.test( [model.X_test[0]], [model.y_test[0]])
-  model.test()
+  #model.test()
   #model.test(num_steps=5)
 
   
   #img = read_image("dataset/faces_original/1/faces_2700.pgm")
-  # img = read_image("bill_2.pgm")
-  # width,height = get_width_height(img)
-  # output_img_ReLu = convolutional(img,width,height,brightness=[])
-  # #display_img(img)
-  # prediction = model.single_test(img)
+  img = read_image("~/695_Projects/internet_faces/hard3_1.pgm")
+  width,height = get_width_height(img)
+  #output_img_ReLu = convolutional(img,width,height,brightness=[])
+  #display_img(img)
+  prediction = model.single_test(img)
 
-  # print(prediction)
+  print(prediction)
 
   """
     # trying to get some pics of what the network is looking at

@@ -138,11 +138,15 @@ if __name__ == '__main__':
   # display_img(output_img_ReLu)
 
   #convert_all_convolution(brightness_=[])
-  convert_all_imgs_to_idx3(Names = [['dataset/faces_original','train_test']])
 
   # img,lbs = load_img_lbl_idx3(path="dataset")
 
   # display_img(img[54])
+
+  img,lbs = load_img_lbl_idx3(path="dataset",rotate=True)
+  size = len(img)
+  for x in range(0,size,100):
+    display_img(img[x])
 
 
 
