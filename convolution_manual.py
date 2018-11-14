@@ -128,7 +128,7 @@ def convert_all_convolution(brightness_=[150,80,50]):
 
 
 if __name__ == '__main__':
-  pass
+  
   # filter_conv_=[[0,-1,0], [-1,4,-1], [0,-1,0]]
   # img_path = 'dataset/faces_training_original/1/face_108.pgm'
   # img = read_image(img_path)
@@ -141,9 +141,8 @@ if __name__ == '__main__':
   #convert_all_convolution(brightness_=[])
   #convert_all_imgs_to_idx3(Names = [['dataset/faces_original','train_test']])
 
-  # img,lbs = load_img_lbl_idx3(path="dataset")
+  img,lbs = load_img_lbl_idx3(path="dataset")
 
-  # display_img(img[54])
 
   # img,lbs = load_img_lbl_idx3(path="dataset",rotate=True)
   # size = len(img)
