@@ -28,7 +28,7 @@ class Model:
 
   sess = tf.Session()
 
-  def __init__(self, X_train_, X_test_, y_train_, y_test_, filter_size=5, NUM_STEPS_ = 50000, MINIBATCH_SIZE_ = 25, learning_rate_ = 0.00001, size_hidden_layer_ = 64):
+  def __init__(self, X_train_, X_test_, y_train_, y_test_, filter_size=5, NUM_STEPS_ = 50000, MINIBATCH_SIZE_ = 40, learning_rate_ = 0.00001, size_hidden_layer_ = 64):
     self.size_train = len(X_train_)
     self.size_test = len(X_test_)
     self.size_classes = len(y_train_[0])
