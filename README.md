@@ -11,6 +11,9 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
 * Sklearn
 * Numpy
 * Pandas
+* Matplotlib
+* Imageio
+* Scipy
 
 # Steps
 
