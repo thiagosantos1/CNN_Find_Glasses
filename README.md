@@ -4,6 +4,14 @@
 
 The idea of this project is to develop a CNN to recognize glasses in Faces.
 
+# Requirements
+
+* Python3
+* Tensorflow
+* Sklearn
+* Numpy
+* Pandas
+
 # Steps
 
 1) Run a manual convolutional with a filter for edge detecter and save the new pictures. We also make the picture brighter where there are more details. This helps to highlight the glasses
@@ -30,4 +38,8 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
 
   1) full_perceptrons.py --> The idea is to test our model with only 1 layer(full layer of perceptrons), without hidden or convolution layers. Our goal is to get a better result than if a computer were just guessing.
 
-  2) cnn_net.py --> We will use convolution layers, each one followed by a max pooling. At the end, we flatten the results, and give to a fully connected layer with one hidden layer. We will use a simplifcation of a restnet architecture.
+  2) cnn_glasses.py --> We will use convolution layers, each one followed by a max pooling. At the end, we flatten the results, and give to a fully connected layer with one hidden layer. We will use a simplifcation of a restnet architecture.
+
+# Results
+
+* The overal accuracy of our model is 98%.
