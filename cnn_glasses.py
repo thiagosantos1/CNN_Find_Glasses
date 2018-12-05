@@ -9,15 +9,14 @@ Master thesis project - Fall 2018
 We will use convolution layers, each one followed by a max pooling. At the end, we flatten the results, 
 and give to a fully connected layer with one hidden layer. We will use a simplifcation of a restnet architecture.
 """
-
-
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  
 import tensorflow as tf
 from idx3_format import load_img_lbl_idx3
 from idx3_format import display_img
 from convolution_manual import *
 from sklearn.model_selection import train_test_split
 import numpy as np
-import os
 import random
 import pandas as pad
 import os
@@ -223,7 +222,7 @@ class Model:
 
 if __name__ == '__main__':
 
-  os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
+  #os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
   tf.logging.set_verbosity(tf.logging.ERROR)
 
   #### Data pre-processing
