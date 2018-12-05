@@ -76,6 +76,29 @@ We started with a simple configurations and increased the "complexity" of our mo
 * dropout of 0.50% +
 * 1 output layer with 2 classes.
 
+# Inside Of CNN Layers
+The ilustrations below is what out model was looking for in a image, when feeding an image with glasses. We can notice
+that in some cases the glasses get very highlighted. In other cases, we humans cannot undestand/know what the filter/weight is looking for. However, in the last filter(7x7 picture) we can see in some cases a circular image with a high peak of pixels which may be a part of a glass.
+
+  <table border=1>
+     <tr align='center'>
+        <td>Original Image</td>                    
+        <td>Convolved Image</td>                    
+        <td>Label</td>                    
+     </tr>
+     <tr align='center' > 
+        <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_0.png" width="350"                  title="hover text"></td>         
+       <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/conv_0.png" width="350" title="hover        text"></td>
+       <td>Not Using Glasses</td> 
+     </tr>
+  </table>
+  <table border=1>
+    <tr align='center' > 
+        <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_1.png" width="350"                title="hover text"></td>         
+       <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/conv_1.png" width="350" title="hover        text"></td>
+       <td>Using Glasses</td> 
+     </tr>
+  </table>
 
 # Results
 
