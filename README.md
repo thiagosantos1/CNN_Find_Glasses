@@ -35,6 +35,8 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
   <img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_0.pgm" width="350" title="hover text">
 </p>
 
+![alt text]("https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_0.pgm")
+
 # Code Classifiers
 
 * Our goal is to test our problem with different classifiers, in order to get an idea of how hard/accurate is the given problem. 
