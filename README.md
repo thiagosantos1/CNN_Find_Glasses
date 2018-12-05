@@ -182,5 +182,5 @@ that in some cases the glasses get very highlighted. In other cases, we humans c
   * yes or no, for image with glasses or not.
 
 # Contributors
-* Thiago Santos
+* M.Sc. Thiago Santos
 * Dr. Geoff Exoo 
