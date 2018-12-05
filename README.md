@@ -164,7 +164,13 @@ that in some cases the glasses get very highlighted. In other cases, we humans c
 
 # Results
 
-1) The overal accuracy of our model is 98%. It was achied with the following configuration:
+* The overal accuracy of our model is 98%. It was achied with the following configuration:
+  1) Number of STEPS   = 50000
+  2) Batch Size        = 40
+  3) Learning Rate     = 0.00001
+  4) Size Hidden Layer = 64
+  5) Training Size     = 80%
+  6) Test Size         = 80%
 
 # How to run our solution
 
