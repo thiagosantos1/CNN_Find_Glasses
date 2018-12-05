@@ -96,7 +96,6 @@ that in some cases the glasses get very highlighted. In other cases, we humans c
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_1_29.png" width="150"</td>       
      </tr>
   </table>
-  
   </br> </br> Layer 2 - 28 x 28 filtered images
   <table border=1>
      <tr align='center' > 
@@ -127,7 +126,6 @@ that in some cases the glasses get very highlighted. In other cases, we humans c
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_61.png" width="150"</td>
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_62.png" width="150"</td>       
      </tr>
-  
   </br> </br> Layer 3 - 14 x 14 filtered images
   <table border=1>
      <tr align='center' > 
@@ -144,7 +142,6 @@ that in some cases the glasses get very highlighted. In other cases, we humans c
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_3_101.png" width="150"</td>
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_3_92.png" width="150"</td>       
      </tr>
-  
   </br> </br> Layer 4 - 7 x 7 filtered images
   <table border=1>
      <tr align='center' > 
