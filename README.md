@@ -36,13 +36,13 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
    <img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_1.png" width="350" title="hover text">
   </p>
 
-  <table border=1 bgcolor='red'>
-     <tr align='left' bgcolor='green'>  # row 0
+  <table border=1>
+     <tr align='left'>  # row 0
         <td>foo</td>                    # column 0
         <td>bar</td>                    # column 1
         <td>baz</td>                    # column 2
      </tr>
-     <tr align='right' bgcolor='blue'>  # row 1
+     <tr align='right' >  # row 1
         <td>hello world</td>            # column 0
      </tr>
   </table>
