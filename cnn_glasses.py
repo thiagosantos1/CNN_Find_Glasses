@@ -21,7 +21,7 @@ import random
 import pandas as pad
 import os
 import sys
-
+import scipy.misc
 
 class Model:
 
@@ -232,6 +232,7 @@ class Model:
     
     for index in range(32):
       d = c[0,index,:,:]
+      d = scipy.misc.imresize(d, (56, 56))
       path = base_path+"layer_1_"+str(index)+".png"
       save_img(d, path_to=path)
 
@@ -239,6 +240,7 @@ class Model:
     c = np.transpose(a,[0,3,1,2])
     for index in range(64):
       d = c[0,index,:,:]
+      d = scipy.misc.imresize(d, (56, 56))
       path = base_path+"layer_2_"+str(index)+".png"
       save_img(d, path_to=path)
 
@@ -246,6 +248,7 @@ class Model:
     c = np.transpose(a,[0,3,1,2])
     for index in range(128):
       d = c[0,index,:,:]
+      d = scipy.misc.imresize(d, (56, 56))
       path = base_path+"layer_3_"+str(index)+".png"
       save_img(d, path_to=path)
 
@@ -253,6 +256,7 @@ class Model:
     c = np.transpose(a,[0,3,1,2])
     for index in range(256):
       d = c[0,index,:,:]
+      d = scipy.misc.imresize(d, (56, 56))
       path = base_path+"layer_4_"+str(index)+".png"
       save_img(d, path_to=path)
 
