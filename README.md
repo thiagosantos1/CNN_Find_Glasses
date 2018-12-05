@@ -78,8 +78,10 @@ Our best resuts were achieved with the following configuration:
 * 1 fully connected layer +
 * 1 output layer with 2 classes.
 
-
-
 # Results
 
 * The overal accuracy of our model is 98%.
+
+# How to run our solution
+
+* 
