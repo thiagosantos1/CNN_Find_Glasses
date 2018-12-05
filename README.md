@@ -53,7 +53,7 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
   
 # Code Classifiers
 
-* Our goal is to test our problem with different classifiers, in order to get an idea of how hard/accurate is the given problem. 
+* Our goal is to test our problem with different classifiers, in order to get an idea of how hard/difficult is the given problem. 
 
 * In this project we have different python codes for Classifiers:
 
