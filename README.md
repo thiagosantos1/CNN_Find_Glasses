@@ -177,3 +177,7 @@ that in some cases the glasses get very highlighted. In other cases, we humans c
 * python3 cnn_glasses.py "Image path(absolute) to be tested"
 * Output:
   * yes or no, for image with glasses or not.
+
+# Contributors
+* Thiago Santos
+* Dr. Geoff Exoo 
