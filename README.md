@@ -32,10 +32,10 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
 
   2) convolution_manul.py --> In in this file we have built a code to run a manual convolution with a given/default filter/weight in a list of images. With the results, we can then run the code idx3_format.py to format all to idx3. The idea of this program is to run a convolution of the image, to reduce details and keep the consistency. Feeding these new images to our model reduces the complexity of the problem.
   <p align="center">
-  <img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_0.pgm" width="350" title="hover text">
+  <img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_0.png" width="350" title="hover text">
 </p>
 
-![alt text]("https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_0.pgm")
+![alt text](https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_0.png)
 
 # Code Classifiers
 
