@@ -164,7 +164,7 @@ that in some cases the glasses get very highlighted. In other cases, we humans c
 
 # Results
 
-* The overal accuracy of our model is 98%.
+** The overal accuracy of our model is 98%. It was achied with the following configuration:
 
 # How to run our solution
 
