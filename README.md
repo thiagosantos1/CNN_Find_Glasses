@@ -85,16 +85,11 @@ that in some cases the glasses get very highlighted. In other cases, we humans c
         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_1_0.png" width="150"</td>         
        <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_1_1.png" width="150"</td>
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_1_2.png" width="150"</td>
+         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_1_3.png" width="150"</td>
+         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_1_5.png" width="150"</td>
      </tr>
   </table>
-  
-  <table border=1>
-    <tr align='center' > 
-        <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_1.png" width="350"                title="hover text"></td>         
-       <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/conv_1.png" width="350" title="hover        text"></td>
-       <td>Using Glasses</td> 
-     </tr>
-  </table>
+
 
 # Results
 
