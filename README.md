@@ -73,7 +73,7 @@ We started with a simple configurations and increased the "complexity" of our mo
 * 1 convolotion layers with 256 weights with filter size of 7 +
 * 1 pooling +
 * 1 fully connected layer +
-* drop of 0.50% +
+* dropout of 0.50% +
 * 1 output layer with 2 classes.
 
 
