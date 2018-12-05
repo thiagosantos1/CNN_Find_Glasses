@@ -142,11 +142,11 @@ if __name__ == '__main__':
   #convert_all_imgs_to_idx3(Names = [['dataset/faces_original','train_test']])
 
   imgs,lbs = load_img_lbl_idx3(path="dataset")
-  img = imgs[3100]
+  img = imgs[200]
   width,height = get_width_height(img)
   output_img_ReLu = convolutional(img,width,height, brightness=[])
-  save_img(img, path_to="dataset/conv_tests/original_0.pgm")
-  save_img(output_img_ReLu, path_to="dataset/conv_tests/conv_0.pgm")
+  save_img(img, path_to="dataset/conv_tests/original_1.pgm")
+  #save_img(output_img_ReLu, path_to="dataset/conv_tests/conv_0.pgm")
 
   # img,lbs = load_img_lbl_idx3(path="dataset",rotate=True)
   # size = len(img)
