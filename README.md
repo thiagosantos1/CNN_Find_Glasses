@@ -46,6 +46,7 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
         <td>hello world</td>            # column 0
      </tr>
   </table>
+  
 # Code Classifiers
 
 * Our goal is to test our problem with different classifiers, in order to get an idea of how hard/accurate is the given problem. 
