@@ -79,7 +79,7 @@ We started with a simple configurations and increased the "complexity" of our mo
 # Inside Of CNN Layers
 The ilustrations below is what out model was looking for in a image, when feeding an image with glasses. We can notice
 that in some cases the glasses get very highlighted. In other cases, we humans cannot undestand/know what the filter/weight is looking for. However, in the last filter(7x7 picture) we can see in some cases a circular image with a high peak of pixels which may be a part of a glass.
-</br/br> Layer 1 - 56 x 56 filtered images
+</br> </br> Layer 1 - 56 x 56 filtered images
   <table border=1>
      <tr align='center' > 
         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_1_0.png" width="100"</td>         
