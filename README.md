@@ -31,7 +31,7 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
   1) idx3_format.py --> Used to convert a given list of images to idx3 format(MNIST format). We also have an available function to read all images from an idx3 format to numpy arrays.
 
   2) convolution_manul.py --> In in this file we have built a code to run a manual convolution with a given/default filter/weight in a list of images. With the results, we can then run the code idx3_format.py to format all to idx3. The idea of this program is to run a convolution of the image, to reduce details and keep the consistency. Feeding these new images to our model reduces the complexity of the problem.
-  </br>Examples of output :
+  </br></br> Examples of output :
   <table border=1>
      <tr align='center'>
         <td>Original Image</td>                    
