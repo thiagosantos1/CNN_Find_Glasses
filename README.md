@@ -4,6 +4,9 @@
 
 The idea of this project is to develop a CNN to recognize glasses in Faces.
 
+# Motivation
+This project can be applied to help solve many social problems by using image classification. As a fact, the most active internet users are children and online safety issues regarding child protection is a dilemma. They are, unfortunately, subject to a number of threats online and virtual pornography is one of them. To prevent such obstacle in children’s childhood, we can use the power of ML to write a similar idea of project, to detect specific features in images. In this case, a suitable ML could detect nudity in images or videos and hide them from children by covering with clothes. 
+
 # Requirements
 
 * Python3
