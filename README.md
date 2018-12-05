@@ -1,6 +1,6 @@
 # CNN Find Glasses in Faces
 
-# Main Idea
+# Goal
 
 The idea of this project is to develop a CNN to recognize glasses in Faces.
 
