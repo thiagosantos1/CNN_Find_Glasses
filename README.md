@@ -64,13 +64,13 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
 # CNN Architecture
 We started with a simple configurations and increased the "complexity" of our model step by step. 
 </br>Our best resuts were achieved with the following configuration:
-* 1 convolotion layers with 32 weights with filter size of 7 +
+* 1 convolotion layer with 32 weights with filter size of 7 +
 * 1 pooling +
-* 1 convolotion layers with 64 weights with filter size of 7 +
+* 1 convolotion layer with 64 weights with filter size of 7 +
 * 1 pooling +
-* 1 convolotion layers with 128 weights with filter size of 7 +
+* 1 convolotion layer with 128 weights with filter size of 7 +
 * 1 pooling +
-* 1 convolotion layers with 256 weights with filter size of 7 +
+* 1 convolotion layer with 256 weights with filter size of 7 +
 * 1 pooling +
 * 1 fully connected layer +
 * dropout of 0.50% +
