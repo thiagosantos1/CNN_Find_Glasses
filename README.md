@@ -17,11 +17,11 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
 
 # Steps of our solution
 
-1) Run a manual convolutional with a filter for edge detecter and save the new pictures. We also make the picture brighter where there are more details. This helps to highlight the glasses
+1) Run a manual convolutional with a filter for edge detecter and save the new pictures. We also make the picture brighter where there are more details. This helps to highlight the glasses and also to reduce complexity
 
-2) Convert all convoluted images to idx3 - Ubyte 
+2) Convert all convoluted images to idx3 - Ubyte - This helps avoiding doing the same Data-Preprocessing many times
 
-3) Feed the final result to our models( perceptrons, CNN, ANN and others) to classify a picture as having glass or not.
+3) Feed the final result of convolved images to our models( perceptrons, CNN, ANN and others) to classify a picture as having glass or not.
 
 
 # Data-Preprocessing
@@ -31,12 +31,26 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
   1) idx3_format.py --> Used to convert a given list of images to idx3 format(MNIST format). We also have an available function to read all images from an idx3 format to numpy arrays.
 
   2) convolution_manul.py --> In in this file we have built a code to run a manual convolution with a given/default filter/weight in a list of images. With the results, we can then run the code idx3_format.py to format all to idx3. The idea of this program is to run a convolution of the image, to reduce details and keep the consistency. Feeding these new images to our model reduces the complexity of the problem.
-  <p align="center">
-  <img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_0.png" width="350" title="hover text">
-</p>
-
-![alt text](https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_1.png)
-
+  </br></br> Examples of output :
+  <table border=1>
+     <tr align='center'>
+        <td>Original Image</td>                    
+        <td>Convolved Image</td>                    
+        <td>Label</td>                    
+     </tr>
+     <tr align='center' > 
+        <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_0.png" width="350"                  title="hover text"></td>         
+       <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/conv_0.png" width="350" title="hover        text"></td>
+       <td>Not Using Glasses</td> 
+     </tr>
+  
+    <tr align='center' > 
+        <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_1.png" width="350"                title="hover text"></td>         
+       <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/conv_1.png" width="350" title="hover        text"></td>
+       <td>Using Glasses</td> 
+     </tr>
+  </table>
+  
 # Code Classifiers
 
 * Our goal is to test our problem with different classifiers, in order to get an idea of how hard/accurate is the given problem. 
