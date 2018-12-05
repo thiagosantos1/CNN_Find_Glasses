@@ -62,7 +62,7 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
   2) cnn_glasses.py --> We will use convolution layers, each one followed by a max pooling. At the end, we flatten the results, and give to a fully connected layer with one hidden layer. We will use a simplifcation of a restnet architecture.
  
 # CNN Architecture
-We started with simpler configurations and increased the "complexity" of our model step by step. 
+We started with a simple configurations and increased the "complexity" of our model step by step. 
 </br>Our best resuts were achieved with the following configuration:
 * 1 convolotion layers with 32 weights with filter size of 7 +
 * 1 pooling +
@@ -83,4 +83,6 @@ We started with simpler configurations and increased the "complexity" of our mod
 
 # How to run our solution
 
-* 
+* python3 cnn_glasses.py "Image path(absolute) to be tested"
+* Output:
+  * yes or no, for image with glasses or not.
