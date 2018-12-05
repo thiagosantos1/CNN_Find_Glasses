@@ -32,18 +32,18 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
 
   2) convolution_manul.py --> In in this file we have built a code to run a manual convolution with a given/default filter/weight in a list of images. With the results, we can then run the code idx3_format.py to format all to idx3. The idea of this program is to run a convolution of the image, to reduce details and keep the consistency. Feeding these new images to our model reduces the complexity of the problem.
   <table border=1>
-     <tr align='left'>
+     <tr align='center'>
         <td>Original Image</td>                    
         <td>Convolved Image</td>                    
         <td>Label</td>                    
      </tr>
-     <tr align='left' > 
+     <tr align='center' > 
         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_0.png" width="350"                  title="hover text"></td>         
        <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/conv_0.png" width="350" title="hover        text"></td>
        <td>Not Using Glasses</td> 
      </tr>
   
-    <tr align='left' > 
+    <tr align='center' > 
         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_1.png" width="350"                title="hover text"></td>         
        <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/conv_1.png" width="350" title="hover        text"></td>
        <td>Using Glasses</td> 
