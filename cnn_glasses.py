@@ -219,6 +219,43 @@ class Model:
     # 0 for non-glasses and 1 for glasses
     return self.sess.run(pred)[0]
 
+  def print_inside_cnn(self,img,label):
+    base_path = "dataset/inside_conv/"
+    # trying to get some pics of what the network is looking at
+    a = self.sess.run(self.conv1_pool, feed_dict={self.x: [img], self.y_conv: [label], self.keep_prob: 1.0})
+    #print( a.shape)
+    c = np.transpose(a,[0,3,1,2])
+    #print( c.shape)
+    
+    #display_img(img.reshape(112,112))
+    #display_img(d)
+    
+    for index in range(32):
+      d = c[0,index,:,:]
+      path = base_path+"layer_1_"+str(index)+".png"
+      save_img(d, path_to=path)
+
+    a = self.sess.run(self.conv2_pool, feed_dict={self.x: [img], self.y_conv: [label], self.keep_prob: 1.0})
+    c = np.transpose(a,[0,3,1,2])
+    for index in range(64):
+      d = c[0,index,:,:]
+      path = base_path+"layer_2_"+str(index)+".png"
+      save_img(d, path_to=path)
+
+    a = self.sess.run(self.conv3_pool, feed_dict={self.x: [img], self.y_conv: [label], self.keep_prob: 1.0})
+    c = np.transpose(a,[0,3,1,2])
+    for index in range(128):
+      d = c[0,index,:,:]
+      path = base_path+"layer_3_"+str(index)+".png"
+      save_img(d, path_to=path)
+
+    a = self.sess.run(self.conv4_pool, feed_dict={self.x: [img], self.y_conv: [label], self.keep_prob: 1.0})
+    c = np.transpose(a,[0,3,1,2])
+    for index in range(256):
+      d = c[0,index,:,:]
+      path = base_path+"layer_4_"+str(index)+".png"
+      save_img(d, path_to=path)
+
 
 if __name__ == '__main__':
 
@@ -234,6 +271,8 @@ if __name__ == '__main__':
   training_test = True
   img_to_test = ""
   resul_out = ""
+  inside_cnn = True
+
   if len(sys.argv) >= 2:
     training_test = False
     img_to_test = sys.argv[1]
@@ -255,14 +294,13 @@ if __name__ == '__main__':
     else:
       print("\nYES, Person is using Glasses\n" if prediction ==1 else "NO, Person is not using Glasses\n")
 
-  """
-    # trying to get some pics of what the network is looking at
-    a = sess.run(conv1_pool, feed_dict={x: [X_test[0]], y: [y_test[0]], keep_prob: 1.0})
-    print( a.shape)
-    c = np.transpose(a,[0,3,1,2])
-    print( c.shape)
-    d = c[0,0,:,:]
-    display_img(X_test[0].reshape(112,112))
-    display_img(d)
-  """
+  
+    if inside_cnn:
+      ins_pred = [0,0]
+      ins_pred[prediction] = 1
+      model.print_inside_cnn(img.reshape(model.height_pic*model.width_pics),ins_pred)
+
+
+
+  
 
