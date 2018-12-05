@@ -37,13 +37,15 @@ The idea of this project is to develop a CNN to recognize glasses in Faces.
   </p>
 
   <table border=1>
-     <tr align='left'>  # row 0
-        <td>foo</td>                    # column 0
-        <td>bar</td>                    # column 1
-        <td>baz</td>                    # column 2
+     <tr align='left'>
+        <td>Original Image</td>                    
+        <td>Convolved Image</td>                    
+        <td>Label</td>                    
      </tr>
-     <tr align='right' >  # row 1
-        <td>hello world</td>            # column 0
+     <tr align='left' > 
+        <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_0.png" width="350" title="hover text"></td>         
+       <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/conv_tests/original_1.png" width="350" title="hover text"></td>
+       <td>Not Using Glasses</td> 
      </tr>
   </table>
   
