@@ -102,32 +102,26 @@ that in some cases the glasses get very highlighted. In other cases, we humans c
   <table border=1>
      <tr align='center' > 
         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_0.png" width="150"</td>         
-       <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_1.png" width="150"</td>
-         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_2.png" width="150"</td>
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_3.png" width="150"</td>
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_4.png" width="150"</td>
+           <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_20.png" width="150"</td>
+         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_21.png" width="150"</td>
      </tr>
     <tr align='center' >
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_5.png" width="150"</td>
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_6.png" width="150"</td>
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_8.png" width="150"</td>
-         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_9.png" width="150"</td>
-         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_13.png" width="150"</td>       
+         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_9.png" width="150"</td> 
+           <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_17.png" width="150"</td>
      </tr>
      <tr align='center' >
-         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_17.png" width="150"</td>
-         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_20.png" width="150"</td>
-         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_21.png" width="150"</td>
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_22.png" width="150"</td>
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_25.png" width="150"</td>       
-     </tr>
-      <tr align='center' >
-         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_28.png" width="150"</td>
+           <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_28.png" width="150"</td>
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_30.png" width="150"</td>
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_41.png" width="150"</td>
-         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_61.png" width="150"</td>
-         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_2_62.png" width="150"</td>       
      </tr>
+      <tr align='center' >
  </table>
  
   </br> </br> Layer 3 - 14 x 14 filtered images
