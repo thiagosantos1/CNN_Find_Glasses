@@ -157,7 +157,7 @@ that in some cases the glasses get very highlighted. In other cases, we humans c
     <tr align='center' >
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_4_98.png" width="150"</td>
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_4_125.png" width="150"</td>
-         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_4_135.png" width="150"</td>
+         <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_4_200.png" width="150"</td>
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_4_241.png" width="150"</td>
          <td><img src="https://github.com/thiagosantos1/CNN_Find_Glasses/blob/master/dataset/inside_conv/layer_4_224.png" width="150"</td>       
      </tr>
